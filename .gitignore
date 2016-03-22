@@ -1,0 +1,9 @@
+texput.log
+*.aux
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+*.pdf
+auto

@@ -1,0 +1,10 @@
+\documentclass[class=minimal,border=0]{standalone}
+\input{.snippet}
+\begin{document}%
+\begin{BVerbatim}[bgcolor=b-darkgrey]
+\color{b-blue}repo <- "richfitz/datastorr.example"
+\color{b-blue}d1 <- datastorr(repo, version="1.0.1")
+\color{b-blue}d2 <- datastorr(repo, version="1.0.2")
+\color{b-green}daff::daff(d1, d2)
+\end{BVerbatim}
+\end{document}

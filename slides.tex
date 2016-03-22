@@ -1,0 +1,250 @@
+% set smartparens-mode to disable that godawful automatic thing
+\documentclass[20pt]{beamer}
+\input{style}
+\input{positioning}
+
+\usepackage{fontawesome}
+\newfontfamily{\FA}{FontAwesome}
+\def\twitter{{\FA \faTwitter}}
+\def\heart{{\FA \faHeart}}
+\def\tickmark{{\FA \faCheck}}
+\def\rarrow{{\FA \relsize{-1}{\faArrowRight}}}
+\def\imagetop#1{\vtop{\null\hbox{#1}}}
+\def\code{\texttt}
+\newcommand{\hrefp}[2]{\href{#1://#2}{#2}}
+\newcommand{\twitterhandle}[1]{\href{https://twitter.com/#1}{@#1}}
+\newcommand{\ghrepo}[1]{\href{https://github.com/#1}{\tt github.com/#1}}
+\newcommand{\twitterhandlesm}[1]{\relsize{-1}{\color{b-grey}\href{https://twitter.com/#1}{@#1}}}
+
+\begin{document}
+
+\setbeamercolor*{palette primary}{fg=white,bg=b-darkgrey}
+\setbeamercolor*{titlelike}{parent=palette primary}
+\setbeamercolor*{normal text}{parent=palette primary}
+\setbeamercolor*{itemize}{parent=palette primary}
+\color{white}
+\setbeamertemplate{navigation symbols}{}
+\setbeamercolor{itemize/enumerate body}{fg=white}
+\setbeamercolor{enumerate item}{fg=white}
+\setbeamertemplate{itemize item}{\raisebox{.33ex}{\footnotesize\color{white}$\blacktriangleright$}}
+
+\begin{frame}
+  \begin{tikzpicture}[remember picture, overlay]
+    \node (A) at ($(current page.center) + (0, .17\paperheight)$) {
+      \resizebox{.9\paperwidth}{!}{%
+        \color{b-blue}\bf Tools for collaborative data use}
+    };
+    \node[anchor=north] at (A.south) {
+      \resizebox{.9\paperwidth}{!}{%
+        \color{b-green}and for users who do not want to care}
+    };
+    \color{white}
+    \node[anchor=south west] (B) at
+    ($(current page.south west) + (0.05\paperwidth, 0.05\paperwidth)$) {
+      \color{b-grey}\twitterhandle{rgfitzjohn}
+    };
+    \node[anchor=south west] at (B.north west) {
+      Rich FitzJohn
+    };
+  \end{tikzpicture}
+\end{frame}
+
+% Some background about me, the department, their skills and how we
+% get to this point.
+
+\begin{frame}
+  \herohigh{\color{b-blue}Two related problems}
+  \bottomhanginglow {
+    \begin{minipage}{\textwidth}
+      \begin{itemize}
+      \item Data distribution \& versioning
+      \item Sharing sensitive data
+      \end{itemize}
+    \end{minipage}}
+\end{frame}
+
+% * We love git
+% * But it sucks for data
+%   - git annex (wtf is going on there)
+%   - git lfs (needs a server)
+%   - many others
+%
+%   Version control of data is hard!  Dat will solve the problem but I
+%   have been waiting for it do so for ages, and they're mostly
+%   interested in massively multiuser tabular data, rather than things
+%   that scientists use, such as trees, database dumps, shapefiles,
+%   whatever.
+%
+%   Because git is so central to New Science it all gets a bit
+%   derailed when you hit any data of real size.
+% \begin{frame}
+%   \herohigh{\color{b-pink}Data versioning}
+%   \bottomhanginglow{%
+%     \raisebox{-.08\paperheight}{\includegraphics[height=.2\paperheight]{diagrams/dropbox}}%
+%     \hspace{.05\paperwidth}{\LARGE vs}\hspace{.05\paperwidth}%
+%     \raisebox{-.08\paperheight}{\includegraphics[height=.2\paperheight]{pics/logos/git}}}
+%   % TODO: Other logos needed here: dat, github, figshare
+% \end{frame}
+
+\begin{frame}
+  \herohigh{\color{b-pink}Data versioning}
+  \bottomhanginglow{%
+    \raisebox{-.07\paperheight}{\includegraphics[height=.15\paperheight]{pics/logos/git}}%
+    \hspace{.025\paperwidth}{\LARGE +}\hspace{.03\paperwidth}%
+    \raisebox{-.07\paperheight}{%
+      \includegraphics<1>[height=.15\paperheight]{pics/database_icon1}%
+      \includegraphics<2>[height=.15\paperheight]{pics/database_icon3}%
+      \includegraphics<3>[height=.15\paperheight]{pics/database_icon5}}%
+    \hspace{.025\paperwidth}{\LARGE =}\hspace{.03\paperwidth}%
+  }
+\end{frame}
+
+% The usual solution proposed here is "just put it on figshare" or
+% some other service.  But this solves only one of the set of
+% problems.
+\begin{frame}
+  \hero{\color{b-green}``Just put it on}
+  \begin{tikzpicture}[remember picture, overlay]%
+    \node[anchor=east,align=right,font=\Huge\bfseries] (A) at ($(current page.east) + (-0.15\paperwidth, -.05\paperheight)$) {%
+      \only<1>{dropbox''}%
+      \only<2>{figshare''}%
+      \only<3>{google drive''}%
+    };
+  \end{tikzpicture}
+\end{frame}
+
+\begin{frame}
+  \minionhigh{\color{b-pink}How do we\ldots}
+  \bottomhanging {
+    \begin{minipage}{\textwidth}
+      \begin{itemize}
+      \item store the potentially large data?
+        \only<2>{{\color{b-green}\tickmark}}
+      \item load the data into R?
+      \item work offline / cache reads?
+      \item deal with multiple versions?
+      \item control access to the data?
+      \end{itemize}
+    \end{minipage}}
+\end{frame}
+
+\begin{frame}
+  \hero{\color{b-blue} datastorr}
+  \bottomhangingverylow{\ghrepo{richfitz/datastorr}}
+\end{frame}
+
+% Here, I should show how this works in practice.  The key ingredients
+% are:
+%
+% Store data against gh releases.
+\begin{frame}
+  \minionhigh{\color{b-blue}Storage: \color{b-green}GitHub releases}
+  % Include a screenshot here I think.  Probably of baad or datastorr
+  \bottomhanginglow{
+    \begin{minipage}{.94\textwidth}
+      \color{white}\raggedright
+      ``We don't limit the total size of your binary release files, nor
+      the bandwidth used to deliver them. However, each individual
+      file must be under {\color{b-pink}2GB} in size.''
+    \end{minipage}}
+  \bottomright{\tt help.github.com/articles/distributing-large-binaries}
+\end{frame}
+
+\begin{frame}
+  \minionhigh{\color{b-blue} configuration}
+  \bottomhanging{
+    \includegraphics<1>[width=.8\textwidth]{snippets/datastorr-json}}
+  \bottomright{\tt github.com/richfitz/datastorr.example}
+\end{frame}
+
+% At this point we'll skip over how things get into the releases and
+% work with the data assuming that they're there.  I'll loop back to
+% show how we put the data up there once the benefits of doing so are
+% more obvious.
+
+% I'd like a slightly better demo version here; something with a small
+% dataset that changes over time.  To do this we should take a dataset
+% like mtcars and edit it a bit so that daff can show the changes that
+% happen in a nice way.  The example I have, using readRDS is a bit
+% artificial.  I just need something that I can meaningfully version.
+% For now, leave as-is.
+
+% Look at the help for daff to see if there is a good example of
+% changing tabular data there.
+\begin{frame}
+  \minionhigh{\color{b-blue}Transfer: \color{b-green}\texttt{curl}}
+  \bottomhanging{
+    \begin{minipage}{\textwidth}
+      \includegraphics<1>[width=\textwidth]{snippets/datastorr-transfer-1}
+      \includegraphics<2>[width=\textwidth]{snippets/datastorr-transfer-2}
+    \end{minipage}}
+  \bottomright{\ghrepo{jeroenooms/curl}}
+\end{frame}
+
+\begin{frame}
+  \minionhigh{\color{b-blue}Caching: \color{b-green}\texttt{storr}}
+  % Diagram with storr showing the caching layer(s)
+  % Cloud -> Disk -> Environment -> R object
+  \bottomright{\ghrepo{richfitz/storr}}
+\end{frame}
+
+% Versioning; show different tables, perhaps run with daff
+%   https://github.com/edwindj/daff
+\begin{frame}
+  \minionhigh{\color{b-blue}Versioning:
+    \color{b-green}\texttt{datastorr} \&
+    \color{b-green}\texttt{storr}}
+  \bottomhanging{
+    \includegraphics<1>[width=\textwidth]{snippets/datastorr-version-1}
+    \includegraphics<2>[width=\textwidth]{snippets/datastorr-version-2}
+    \includegraphics<3>[width=\textwidth]{snippets/datastorr-version-3}
+  }
+  \bottomright{\ghrepo{richfitz/datastorr}}
+\end{frame}
+
+\begin{frame}
+  \minionhigh{\color{b-blue}Access control}
+  \begin{minipage}{1.0\linewidth}
+    \begin{itemize}
+    \item Private repos = private data {\color{b-pink}{\FA \faLock}}
+    \item Access with OAuth or GitHub token {\color{b-pink}{\FA
+          \faUnlock}}
+    \item Private organisation repos, too
+    \end{itemize}
+  \end{minipage}
+\end{frame}
+
+
+% I may need to wind it back a bit here; these are all the possible
+% features of the package, and I do want to emphasise that this is
+% meant to work well with the simple csv-as-moving-target use-case.
+% So perhaps the creation part should be really simple.  I should
+% point at an entire workflow here; a document or something that walks
+% through the whole thing end-to-end.
+\begin{frame}
+  \hero{Making releases}
+\end{frame}
+
+\begin{frame}
+  \herohigh{Making releases}
+  \bottomhanging{
+    \begin{minipage}{1.0\linewidth}
+      \begin{enumerate}
+        \item Create a GitHub Repo
+      \end{enumerate}
+    \end{minipage}}
+\end{frame}
+
+% Show how creation works
+
+% Perhaps offer an interactive bit
+
+% Picture of a cute cat.
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% TeX-engine: xetex
+%%% End:

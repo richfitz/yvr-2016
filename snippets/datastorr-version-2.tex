@@ -1,0 +1,11 @@
+\documentclass[class=minimal,border=0]{standalone}
+\input{.snippet}
+\begin{document}%
+\begin{BVerbatim}[bgcolor=b-darkgrey]
+\color{b-blue}repo <- "richfitz/datastorr.example"
+\color{b-blue}obj <- datastorr(repo, extended=TRUE)
+\color{b-blue}obj$versions(local=FALSE)
+\color{b-grey}# [1] 1.0.0   1.0.1   1.0.2
+\color{b-blue}d <- obj$get({\color{b-green}"1.0.1"})
+\end{BVerbatim}
+\end{document}
