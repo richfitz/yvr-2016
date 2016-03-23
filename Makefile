@@ -8,7 +8,7 @@ all: slides.pdf
 	xelatex $<
 
 diagrams:
-	cd diagrams && make
+#	cd diagrams && make
 
 snippets:
 	make -C snippets

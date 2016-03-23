@@ -151,10 +151,10 @@
 \end{frame}
 
 \begin{frame}
-  \minionhigh{\color{b-blue} configuration}
+  \minionhigh{\color{b-blue}} Configuration
   \bottomhanging{
     \includegraphics<1>[width=.8\textwidth]{snippets/datastorr-json}}
-  \bottomright{\tt github.com/richfitz/datastorr.example}
+  \bottomright{\tt github.com/richfitz/data}
 \end{frame}
 
 % At this point we'll skip over how things get into the releases and
@@ -162,15 +162,7 @@
 % show how we put the data up there once the benefits of doing so are
 % more obvious.
 
-% I'd like a slightly better demo version here; something with a small
-% dataset that changes over time.  To do this we should take a dataset
-% like mtcars and edit it a bit so that daff can show the changes that
-% happen in a nice way.  The example I have, using readRDS is a bit
-% artificial.  I just need something that I can meaningfully version.
-% For now, leave as-is.
-
-% Look at the help for daff to see if there is a good example of
-% changing tabular data there.
+% At this point it might be worth showing how curl actually works here?
 \begin{frame}
   \minionhigh{\color{b-blue}Transfer: \color{b-green}\texttt{curl}}
   \bottomhanging{
@@ -222,7 +214,9 @@
 % point at an entire workflow here; a document or something that walks
 % through the whole thing end-to-end.
 \begin{frame}
-  \hero{Making releases}
+  \herohigh{Making releases}
+  \bottomhanginglow{
+    \includegraphics<1>[width=\textwidth]{snippets/datastorr-release}}
 \end{frame}
 
 \begin{frame}
@@ -230,14 +224,35 @@
   \bottomhanging{
     \begin{minipage}{1.0\linewidth}
       \begin{enumerate}
-        \item Create a GitHub Repo
+        \item Fetches metadata
+        \item Checks remote version
+        \item Creates remote tag
+        \item Uploads file to releases
       \end{enumerate}
     \end{minipage}}
 \end{frame}
 
-% Show how creation works
-
 % Perhaps offer an interactive bit
+
+\begin{frame}
+  \minionhigh{\color{b-pink}How do we\ldots}
+  \bottomhanging {
+    \begin{minipage}{\textwidth}
+      \begin{itemize}
+      \item store the potentially large data?
+        \only<2->{{\color{b-green}\tickmark}}
+      \item load the data into R?
+        \only<3->{{\color{b-green}\tickmark}}
+      \item work offline / cache reads?
+        \only<3->{{\color{b-green}\tickmark}}
+      \item deal with multiple versions?
+        \only<3->{{\color{b-green}\tickmark}}
+      \item control access to the data?
+        \only<3->{{\color{b-green}\tickmark}}
+      \end{itemize}
+    \end{minipage}}
+  \bottomright{\tt github.com/richfitz/datastorr}
+\end{frame}
 
 % Picture of a cute cat.
 
