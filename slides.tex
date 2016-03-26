@@ -3,6 +3,14 @@
 \input{style}
 \input{positioning}
 
+% Missing so far:
+%
+% 1. Something about my context (who am I to talk about this?)
+% 2. Something more broadly about the problems - real use cases?
+%    - perhaps something on the R data package
+%    - perhaps something about dat project too
+%    - taxonlooup as an example of this
+
 \usepackage{fontawesome}
 \newfontfamily{\FA}{FontAwesome}
 \def\twitter{{\FA \faTwitter}}
@@ -96,6 +104,10 @@
       \includegraphics<2>[height=.15\paperheight]{pics/database_icon3}%
       \includegraphics<3>[height=.15\paperheight]{pics/database_icon5}}%
     \hspace{.025\paperwidth}{\LARGE =}\hspace{.03\paperwidth}%
+    \raisebox{-.1\paperheight}{%
+      \includegraphics<1>[height=.20\paperheight]{pics/rage1}%
+      \includegraphics<2>[height=.20\paperheight]{pics/rage3}%
+      \includegraphics<3>[height=.20\paperheight]{pics/rage5}}%
   }
 \end{frame}
 
@@ -151,7 +163,7 @@
 \end{frame}
 
 \begin{frame}
-  \minionhigh{\color{b-blue}} Configuration
+  \minionhigh{\color{b-blue} Configuration}
   \bottomhanging{
     \includegraphics<1>[width=.8\textwidth]{snippets/datastorr-json}}
   \bottomright{\tt github.com/richfitz/data}
