@@ -44,7 +44,7 @@
     };
     \node[anchor=north] at (A.south) {
       \resizebox{.9\paperwidth}{!}{%
-        \color{b-green}and for users who do not want to care}
+        \color{b-green}\ldots for users who do not want to care}
     };
     \color{white}
     \node[anchor=south west] (B) at
@@ -163,10 +163,16 @@
 \end{frame}
 
 \begin{frame}
-  \minionhigh{\color{b-blue} Configuration}
-  \bottomhanging{
+  \minionhigh{\color{b-blue}Storage: \color{b-green}GitHub releases}
+  \bottomhanging{\includegraphics[width=\textwidth]{pics/shots/releases-gh}}
+  \bottomright{\ghrepo{richfitz/data/releases}}
+\end{frame}
+
+\begin{frame}
+  \minionhigh{\color{b-blue} Configuration: \tt\color{b-green} datastorr.json}
+  \bottomhanging{%
     \includegraphics<1>[width=.8\textwidth]{snippets/datastorr-json}}
-  \bottomright{\tt github.com/richfitz/data}
+  \bottomright{\ghrepo{richfitz/data}}
 \end{frame}
 
 % At this point we'll skip over how things get into the releases and
@@ -181,6 +187,7 @@
     \begin{minipage}{\textwidth}
       \includegraphics<1>[width=\textwidth]{snippets/datastorr-transfer-1}
       \includegraphics<2>[width=\textwidth]{snippets/datastorr-transfer-2}
+      \includegraphics<3>[width=\textwidth]{snippets/datastorr-transfer-3}
     \end{minipage}}
   \bottomright{\ghrepo{jeroenooms/curl}}
 \end{frame}
@@ -189,11 +196,10 @@
   \minionhigh{\color{b-blue}Caching: \color{b-green}\texttt{storr}}
   % Diagram with storr showing the caching layer(s)
   % Cloud -> Disk -> Environment -> R object
+  \bottomhanging{\includegraphics[width=\textwidth]{diagrams/datastorr}}
   \bottomright{\ghrepo{richfitz/storr}}
 \end{frame}
 
-% Versioning; show different tables, perhaps run with daff
-%   https://github.com/edwindj/daff
 \begin{frame}
   \minionhigh{\color{b-blue}Versioning:
     \color{b-green}\texttt{datastorr} \&
@@ -202,8 +208,32 @@
     \includegraphics<1>[width=\textwidth]{snippets/datastorr-version-1}
     \includegraphics<2>[width=\textwidth]{snippets/datastorr-version-2}
     \includegraphics<3>[width=\textwidth]{snippets/datastorr-version-3}
+    \includegraphics<4>[width=\textwidth]{pics/shots/daff}
   }
-  \bottomright{\ghrepo{richfitz/datastorr}}
+  \bottomright{%
+    \only<1-3>\ghrepo{richfitz/datastorr}%
+    \only<4>\ghrepo{edwindj/daff}}
+\end{frame}
+
+{
+  \setbeamercolor{background canvas}{bg=white}
+  \begin{frame}
+    \inthemiddle{%
+      \includegraphics[height=.9\textheight]{pics/can-of-worms}}
+  \end{frame}
+}
+
+\begin{frame}
+  \minionhigh{\color{b-blue}Versioning: semver.org}
+  \bottomhanging{
+    \begin{minipage}{1.0\linewidth}
+      \begin{itemize}
+      \item \texttt{{\color{b-pink}<major>}.{\color{b-blue}<minor>}.{\color{b-green}<patch>}}
+      \item \textbf{\color{b-green} patch number}: new data, small updates
+      \item \textbf{\color{b-blue} minor number}: new columns, big updates
+      \item \textbf{\color{b-pink} major number}: breaking changes
+      \end{itemize}
+    \end{minipage}}
 \end{frame}
 
 \begin{frame}
@@ -233,7 +263,7 @@
 
 \begin{frame}
   \herohigh{Making releases}
-  \bottomhanging{
+  \bottomhanginglow{
     \begin{minipage}{1.0\linewidth}
       \begin{enumerate}
         \item Fetches metadata
@@ -243,6 +273,18 @@
       \end{enumerate}
     \end{minipage}}
 \end{frame}
+
+\begin{frame}
+  \minionhigh{Next level: data packages}
+  \begin{minipage}{1.0\linewidth}
+    \begin{itemize}
+    \item Dependency installation
+    \item Post-processing
+    \end{itemize}
+  \end{minipage}
+  \bottomright{\ghrepo{traitecoevo/taxonlookup}}
+\end{frame}
+
 
 % Perhaps offer an interactive bit
 
