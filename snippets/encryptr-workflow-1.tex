@@ -1,0 +1,16 @@
+\documentclass[class=minimal,border=0]{standalone}
+\input{.snippet}
+\begin{document}%
+\begin{BVerbatim}[bgcolor=b-darkgrey]
+encryptr::data_admin_init(data_dir)
+# Loading user key from /home/alice/.ssh/id_rsa.pub
+# Generating data key
+# Authorising ourselves
+# Authorising e0:6f:5a:d1:5b:b3:98:4b:ee:f3:d7:15:06:27:76:7c
+#   user: alice
+#   host: dyn1237-73.wlan.ic.ac.uk
+#   date: 2016-03-10 09:23:15
+cfg <- encryptr::config_data(data_dir)
+encryptr::encrypt(saveRDS(iris, filename), cfg)
+\end{BVerbatim}
+\end{document}

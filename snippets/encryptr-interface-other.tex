@@ -1,0 +1,17 @@
+\documentclass[class=minimal,border=0]{standalone}
+\input{.snippet}
+\begin{document}%
+\begin{BVerbatim}[bgcolor=b-darkgrey]
+{\color{b-pink}encryptr::encrypt_file}({\color{b-blue}filename}, {\color{b-orange}secret}, {\color{b-pink}key})
+{\color{b-pink}encryptr::decrypt_file}({\color{b-orange}secret}, {\color{b-blue}filename}, {\color{b-pink}key})
+
+{\color{b-orange}secret} <- {\color{b-pink}encryptr::encrypt_object}({\color{b-blue}object}, NULL, {\color{b-pink}key})
+{\color{b-blue}object} <- {\color{b-pink}encryptr::decrypt_object}({\color{b-orange}secret}, {\color{b-pink}key})
+
+{\color{b-orange}secret} <- {\color{b-pink}encryptr::encrypt_string}({\color{b-blue}"secret"}, NULL, {\color{b-pink}key})
+{\color{b-blue}string} <- {\color{b-pink}encryptr::decrypt_string}({\color{b-orange}secret}, {\color{b-pink}key})
+
+{\color{b-orange}secret} <- {\color{b-pink}encryptr::encrypt_data}({\color{b-blue} data}, NULL, {\color{b-pink}key})
+{\color{b-blue}data} <- {\color{b-pink}encryptr::decrypt_data}({\color{b-orange}secret}, NULL, {\color{b-pink}key})
+\end{BVerbatim}
+\end{document}

@@ -308,7 +308,133 @@
   \bottomright{\tt github.com/richfitz/datastorr}
 \end{frame}
 
+\begin{frame}
+  \begin{tikzpicture}[remember picture, overlay]
+    \node[inner sep=0, outer sep=0] at (current page.center) {%
+      \includegraphics[width=\paperwidth]{pics/cat}};
+  \end{tikzpicture}
+\end{frame}
+
 % Picture of a cute cat.
+
+\begin{frame}
+  \hero{\color{b-blue} Sensitive data}
+\end{frame}
+
+% There are two parts here I want to discuss.  The first is encryption
+% aimed at *users* rather than at encryption dorks.  The second is the
+% workflow for dealing with shared encrypted data in a sane way.
+
+% I need something here that shows the scope of the problem -- there a
+% bunch of different strands here:
+%
+% * storing senstive data in a public place (e.g., github)
+% * storing data in a private place but risking leakage (e.g.,
+%   computer loss/theft)
+%
+% because this is an area that is largely out of scope for biology so
+% far I don't know what the full set of use-cases looks like.  It
+% might be very limited, or very broad, but without the tooling it's
+% going to be hard to tell.
+
+\begin{frame}
+  \minionhigh{Humane encryption}
+  \bottomhanging{
+    \includegraphics<1>[width=\textwidth]{snippets/encryptr-interface-1}%
+    \includegraphics<2>[width=\textwidth]{snippets/encryptr-interface-2}%
+    \includegraphics<3>[width=\textwidth]{snippets/encryptr-interface-3}%
+    \includegraphics<4>[width=\textwidth]{snippets/encryptr-interface-4}%
+    \includegraphics<5>[width=\textwidth]{snippets/encryptr-interface-other}%
+  }
+\end{frame}
+
+\begin{frame}
+  \minionhigh{Supported libraries}
+  \bottomhanging {
+    \begin{minipage}{\textwidth}
+      \begin{itemize}
+      \item OpenSSL - asymmetric
+      \item Sodium - symmetric
+      \item Sodium - asymmetric
+      \item Sodium - authenticated
+      \end{itemize}
+    \end{minipage}
+  }
+  \bottomright{
+    \begin{minipage}{\textwidth}
+      \raggedleft
+      \ghrepo{jeroenooms/openssl}\\\ghrepo{jeroenooms/sodium}
+    \end{minipage}
+  }
+\end{frame}
+
+\begin{frame}
+  \minionhigh{\color{b-pink}How do we\ldots}
+  \bottomhanging {
+    \begin{minipage}{\textwidth}
+      \begin{itemize}
+      \item encrypt something?
+        \only<2>{{\color{b-green}\tickmark}}
+      \item share keys amongst users?
+      \item \ldots so the key is not exposed?
+      \item grant access to new people?
+      \end{itemize}
+    \end{minipage}}
+\end{frame}
+
+% Show a symmetric key (a circle) and that we can encrypt and decrypt
+% with it.  Show this with little equations and with code/pseudocode.
+
+\begin{frame}
+  \minionhigh{Symmetric key encryption}
+  \bottomhanging{\only<1>{%
+      \begin{minipage}{\textwidth}
+        \begin{itemize}
+        \item Same key to encrypt and decrypt
+        \item Everyone has the same key
+        \end{itemize}
+      \end{minipage}}
+    \includegraphics<2>[width=.85\textwidth]{diagrams/encryption-sym-1}
+    \includegraphics<3>[width=.85\textwidth]{diagrams/encryption-sym-2}}
+\end{frame}
+
+\begin{frame}
+  \minionhigh{Asymmetric (public key) encryption}
+  \bottomhanginglow{\only<1>{%
+    \begin{minipage}{\textwidth}
+      \begin{itemize}
+      \item Keys come in a pair (public and private)
+      \item Anyone can encrypt a message with your public key
+      \item Only you can decrypt it with your private key
+      \end{itemize}
+    \end{minipage}}
+  \includegraphics<2>[width=.85\textwidth]{diagrams/encryption-asym}}
+\end{frame}
+
+\begin{frame}
+  \minionhigh{A workflow}
+  \bottomhanginglow{\only<1>{%
+      \begin{minipage}{\textwidth}
+        \begin{enumerate}
+        \item Generate SSH keys
+        \item Generate a sodium symmetric key for the data
+        \item Encrypt data key with your SSH public key
+        \item Store encrypted key somewhere
+        \end{enumerate}
+      \end{minipage}}
+    \includegraphics<2>[width=.85\textwidth]{diagrams/encryption-workflow}}
+\end{frame}
+
+% Diagrams here showing what is going on in the workflow with alice
+% and bob labels on the keys.
+
+\begin{frame}
+  \minionhigh{In action}
+  \bottomhanging{
+    \includegraphics<1>[width=\textwidth]{snippets/encryptr-workflow-1}%
+    \includegraphics<2>[width=\textwidth]{snippets/encryptr-workflow-2}%
+    \includegraphics<3>[width=\textwidth]{snippets/encryptr-workflow-3}}
+\end{frame}
 
 \end{document}
 
