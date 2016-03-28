@@ -495,7 +495,25 @@
 
 % One more thing!
 
+\begin{frame}
+  \begin{tikzpicture}[remember picture, overlay]%
+    \node at
+    ($(current page.center) + (0, .15\paperheight)$) {%
+      \Huge\it One more thing\ldots
+    };
+  \end{tikzpicture}
+\end{frame}
 
+\begin{frame}
+  \hero{\color{b-green}Odin}
+  \inthemiddle{\includegraphics[height=.55\textheight]{pics/odin}}
+  \bottomright{\ghrepo{richfitz/odin}}
+\end{frame}
+
+\begin{frame}
+  \inthemiddle{\includegraphics[height=.8\textheight]{snippets/odin-1}}
+  \bottomright{\ghrepo{richfitz/odin}}
+\end{frame}
 
 \end{document}
 
