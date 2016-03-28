@@ -2,15 +2,15 @@
 \input{.snippet}
 \begin{document}%
 \begin{BVerbatim}[bgcolor=b-darkgrey]
-encryptr::data_admin_init(data_dir)
-# Loading user key from /home/alice/.ssh/id_rsa.pub
-# Generating data key
-# Authorising ourselves
-# Authorising e0:6f:5a:d1:5b:b3:98:4b:ee:f3:d7:15:06:27:76:7c
-#   user: alice
-#   host: dyn1237-73.wlan.ic.ac.uk
-#   date: 2016-03-10 09:23:15
-cfg <- encryptr::config_data(data_dir)
-encryptr::encrypt(saveRDS(iris, filename), cfg)
+encryptr::data_admin_init({\color{b-green}data_dir})
+\color{b-grey}# Loading user key from /home/{\color{b-orange}alice}/.ssh/id_rsa.pub
+\color{b-grey}# Generating data key
+\color{b-grey}# Authorising ourselves
+\color{b-grey}# Authorising e0:6f:5a:d1:5b:b3:98:4b:ee:f3:d7:15:06:27:76:7c
+\color{b-grey}#   user: {\color{b-orange}alice}
+\color{b-grey}#   host: dyn1237-73.wlan.ic.ac.uk
+\color{b-grey}#   date: 2016-03-10 09:23:15
+{\color{b-pink}cfg} <- encryptr::config_data({\color{b-green}data_dir})
+encryptr::encrypt(saveRDS(iris, filename), {\color{b-pink}cfg})
 \end{BVerbatim}
 \end{document}

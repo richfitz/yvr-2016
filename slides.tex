@@ -411,30 +411,91 @@
   \includegraphics<2>[width=.85\textwidth]{diagrams/encryption-asym}}
 \end{frame}
 
+% This is the first stage here
 \begin{frame}
   \minionhigh{A workflow}
   \bottomhanginglow{\only<1>{%
       \begin{minipage}{\textwidth}
         \begin{enumerate}
-        \item Generate SSH keys
-        \item Generate a sodium symmetric key for the data
+        \item Generate SSH keys: \texttt{ssh-keygen}
+        \item Generate a symmetric key for the data
         \item Encrypt data key with your SSH public key
         \item Store encrypted key somewhere
         \end{enumerate}
       \end{minipage}}
-    \includegraphics<2>[width=.85\textwidth]{diagrams/encryption-workflow}}
+    \includegraphics<2>[width=.85\textwidth]{diagrams/encryption-asym}%
+    \includegraphics<3>[width=.85\textwidth]{diagrams/encryption-workflow}}
+  \bottomright{\ghrepo{richfitz/encryptr}}
+\end{frame}
+
+\begin{frame}
+  \minionveryhigh{{\color{b-purple}Alice} \color{white} creates
+    \color{b-pink} data key}
+  \bottomhanging{
+    \includegraphics<1>[width=\textwidth]{snippets/encryptr-workflow-1}}
+  \bottomhanginghigh{
+    \includegraphics<2>[width=.85\textwidth]{diagrams/encryption-workflow-1}}
+  \bottomright{\includegraphics[height=.2\paperheight]{pics/alice}}
 \end{frame}
 
 % Diagrams here showing what is going on in the workflow with alice
 % and bob labels on the keys.
 
 \begin{frame}
-  \minionhigh{In action}
+  \minionveryhigh{\color{white}{\color{b-grey}Bob} requests access}
   \bottomhanging{
-    \includegraphics<1>[width=\textwidth]{snippets/encryptr-workflow-1}%
-    \includegraphics<2>[width=\textwidth]{snippets/encryptr-workflow-2}%
-    \includegraphics<3>[width=\textwidth]{snippets/encryptr-workflow-3}}
+    \includegraphics<1>[width=\textwidth]{snippets/encryptr-workflow-2}}
+  \bottomhanginghigh{
+    \includegraphics<2>[width=.85\textwidth]{diagrams/encryption-workflow-2}}
+  \bottomright{\includegraphics[height=.2\paperheight]{pics/bob}}
 \end{frame}
+
+\begin{frame}
+  \minionveryhigh{{\color{b-purple}Alice} \color{white} authorises {\color{b-grey}Bob}}
+  \bottomhanging{
+    \includegraphics<1>[width=\textwidth]{snippets/encryptr-workflow-3}}
+  \bottomhanginghigh{
+    \includegraphics<2>[width=.85\textwidth]{diagrams/encryption-workflow-3}}
+  \bottomright{\includegraphics[height=.2\paperheight]{pics/alice}}
+\end{frame}
+
+\begin{frame}
+  \minionveryhigh{{\color{b-grey}Bob} \color{white} can decrypt {\color{b-pink}data key}}
+  \bottomhanginghigh{
+    \includegraphics<1>[width=.85\textwidth]{diagrams/encryption-workflow-all}}
+  \bottomright{\includegraphics[height=.2\paperheight]{pics/bob}}
+\end{frame}
+
+\begin{frame}
+  \minionveryhigh{\color{white}{\color{b-purple}Alice} and
+    {\color{b-grey}Bob} \color{white} can decrypt data}
+  \begin{tikzpicture}[remember picture, overlay]%
+    \node[anchor=north] at
+    ($(current page.center) + (0, .24\paperheight)$) {
+      \includegraphics[width=\textwidth]{diagrams/encryption-sym-1}
+    };
+  \end{tikzpicture}
+  \bottomright{\includegraphics[height=.2\paperheight]{pics/alice}\hspace{.02\paperheight}\includegraphics[height=.2\paperheight]{pics/bob}}
+\end{frame}
+
+\begin{frame}
+  \minionhigh{\color{b-pink}How do we\ldots}
+  \bottomhanging {
+    \begin{minipage}{\textwidth}
+      \begin{itemize}
+      \item encrypt something?
+      \item share keys amongst users?
+      \item \ldots so the key is not exposed?
+      \item grant access to new people?
+      \end{itemize}
+    \end{minipage}}
+\end{frame}
+
+% Need a summary here still
+
+% One more thing!
+
+
 
 \end{document}
 

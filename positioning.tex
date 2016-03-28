@@ -40,6 +40,13 @@ minimum width=\paperwidth, text width=.95\paperwidth]
   };
 \end{tikzpicture}}
 
+\newcommand{\minionveryhigh}[1]{%
+  \begin{tikzpicture}[remember picture, overlay]%
+  \node[anchor=north west,align=left,font=\Large\bfseries] (A) at ($(current page.north west) + (0.05\paperwidth, -0.05\paperheight)$) {%
+    #1
+  };
+\end{tikzpicture}}
+
 \newcommand{\upperhalf}[1]{%
   \begin{tikzpicture}[remember picture, overlay]%
     \node[anchor=west,font=\normalsize, align=left] at
