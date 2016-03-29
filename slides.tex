@@ -1,4 +1,3 @@
-% set smartparens-mode to disable that godawful automatic thing
 \documentclass[20pt]{beamer}
 \input{style}
 \input{positioning}
@@ -52,13 +51,18 @@
       \color{b-grey}\twitterhandle{rgfitzjohn}
     };
     \node[anchor=south west] at (B.north west) {
-      Rich FitzJohn
+      Rich FitzJohn, Imperial College London
     };
   \end{tikzpicture}
 \end{frame}
 
-% Some background about me, the department, their skills and how we
-% get to this point.
+% Some background about me, Imperial, people's skills and how we get
+% to this point.
+
+% Also need to get across that the tools that I will present are super
+% new.  They're not being widely used within the department yet
+% because I'm still trying to scope what the problems are and how we
+% can solve them.
 
 \begin{frame}
   \herohigh{\color{b-blue}Two related problems}
@@ -71,11 +75,16 @@
     \end{minipage}}
 \end{frame}
 
+% Get a picture of a "data deluge", and then go into some more detail
+% about the sorts of data that people have.  1mb excel files and other
+% relatively innocent things are an issue here.
+
 % * We love git
 % * But it sucks for data
 %   - git annex (wtf is going on there)
 %   - git lfs (needs a server)
 %   - many others
+%   - dat, at some point in the future, could be very exciting.
 %
 %   Version control of data is hard!  Dat will solve the problem but I
 %   have been waiting for it do so for ages, and they're mostly
@@ -95,19 +104,34 @@
 % \end{frame}
 
 \begin{frame}
+  \begin{tikzpicture}[remember picture, overlay]%
+    \node (A) at (current page.center) {%
+      \includegraphics[width=.9\textwidth]{snippets/bigdata}
+    };
+    \node[anchor=north east] (B) at
+    ($(A.south east) + (0, .075\paperheight)$) {%
+      \only<1>{lol jk}%
+      \only<2>{\LARGE \ldots for git}%
+    };
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}
   \herohigh{\color{b-pink}Data versioning}
   \bottomhanginglow{%
     \raisebox{-.07\paperheight}{\includegraphics[height=.15\paperheight]{pics/logos/git}}%
     \hspace{.025\paperwidth}{\LARGE +}\hspace{.03\paperwidth}%
     \raisebox{-.07\paperheight}{%
-      \includegraphics<1>[height=.15\paperheight]{pics/database_icon1}%
-      \includegraphics<2>[height=.15\paperheight]{pics/database_icon3}%
-      \includegraphics<3>[height=.15\paperheight]{pics/database_icon5}}%
+      \includegraphics<1>[height=.15\paperheight]{pics/code}%
+      \includegraphics<2>[height=.15\paperheight]{pics/database_icon1}%
+      \includegraphics<3>[height=.15\paperheight]{pics/database_icon3}%
+      \includegraphics<4>[height=.15\paperheight]{pics/database_icon5}}%
     \hspace{.025\paperwidth}{\LARGE =}\hspace{.03\paperwidth}%
     \raisebox{-.1\paperheight}{%
-      \includegraphics<1>[height=.20\paperheight]{pics/rage1}%
-      \includegraphics<2>[height=.20\paperheight]{pics/rage3}%
-      \includegraphics<3>[height=.20\paperheight]{pics/rage5}}%
+      \includegraphics<1>[height=.20\paperheight]{pics/rage0}%
+      \includegraphics<2>[height=.20\paperheight]{pics/rage1}%
+      \includegraphics<3>[height=.20\paperheight]{pics/rage3}%
+      \includegraphics<4>[height=.20\paperheight]{pics/rage5}}%
   }
 \end{frame}
 
@@ -120,7 +144,6 @@
     \node[anchor=east,align=right,font=\Huge\bfseries] (A) at ($(current page.east) + (-0.15\paperwidth, -.05\paperheight)$) {%
       \only<1>{dropbox''}%
       \only<2>{figshare''}%
-      \only<3>{google drive''}%
     };
   \end{tikzpicture}
 \end{frame}
@@ -130,8 +153,8 @@
   \bottomhanging {
     \begin{minipage}{\textwidth}
       \begin{itemize}
-      \item store the potentially large data?
-        \only<2>{{\color{b-green}\tickmark}}
+      \item store the potentially large(ish) data?
+        \only<2>{{\color{b-green}\tickmark}}\vphantom{\tickmark}
       \item load the data into R?
       \item work offline / cache reads?
       \item deal with multiple versions?
@@ -182,14 +205,19 @@
 
 % At this point it might be worth showing how curl actually works here?
 \begin{frame}
-  \minionhigh{\color{b-blue}Transfer: \color{b-green}\texttt{curl}}
+  \minionhigh{\color{b-blue}Transfer: \color{b-green}\texttt{curl} \& \texttt{httr}}
   \bottomhanging{
     \begin{minipage}{\textwidth}
       \includegraphics<1>[width=\textwidth]{snippets/datastorr-transfer-1}
       \includegraphics<2>[width=\textwidth]{snippets/datastorr-transfer-2}
       \includegraphics<3>[width=\textwidth]{snippets/datastorr-transfer-3}
     \end{minipage}}
-  \bottomright{\ghrepo{jeroenooms/curl}}
+  \bottomright{
+    \begin{minipage}{\textwidth}
+      \raggedleft
+      \ghrepo{jeroenooms/curl}\\\ghrepo{hadley/httr}
+    \end{minipage}
+  }
 \end{frame}
 
 \begin{frame}
@@ -211,8 +239,8 @@
     \includegraphics<4>[width=\textwidth]{pics/shots/daff}
   }
   \bottomright{%
-    \only<1-3>\ghrepo{richfitz/datastorr}%
-    \only<4>\ghrepo{edwindj/daff}}
+    \only<1-3>{\ghrepo{richfitz/datastorr}}%
+    \only<4>{\ghrepo{edwindj/daff}}}
 \end{frame}
 
 {
@@ -224,7 +252,7 @@
 }
 
 \begin{frame}
-  \minionhigh{\color{b-blue}Versioning: semver.org}
+  \minionhigh{\color{b-blue}Versioning: \color{b-green}semver.org}
   \bottomhanging{
     \begin{minipage}{1.0\linewidth}
       \begin{itemize}
@@ -241,7 +269,7 @@
   \begin{minipage}{1.0\linewidth}
     \begin{itemize}
     \item Private repos = private data {\color{b-pink}{\FA \faLock}}
-    \item Access with OAuth or GitHub token {\color{b-pink}{\FA
+    \item Access with {\color{b-green}OAuth} or {\color{b-green}GitHub token} {\color{b-pink}{\FA
           \faUnlock}}
     \item Private organisation repos, too
     \end{itemize}
@@ -256,13 +284,13 @@
 % point at an entire workflow here; a document or something that walks
 % through the whole thing end-to-end.
 \begin{frame}
-  \herohigh{Making releases}
+  \herohigh{\color{b-orange}Making releases}
   \bottomhanginglow{
     \includegraphics<1>[width=\textwidth]{snippets/datastorr-release}}
 \end{frame}
 
 \begin{frame}
-  \herohigh{Making releases}
+  \herohigh{\color{b-orange}Making releases}
   \bottomhanginglow{
     \begin{minipage}{1.0\linewidth}
       \begin{enumerate}
@@ -275,7 +303,7 @@
 \end{frame}
 
 \begin{frame}
-  \minionhigh{Next level: data packages}
+  \minionhigh{\color{b-green}Next level: data packages}
   \begin{minipage}{1.0\linewidth}
     \begin{itemize}
     \item Dependency installation
@@ -285,7 +313,6 @@
   \bottomright{\ghrepo{traitecoevo/taxonlookup}}
 \end{frame}
 
-
 % Perhaps offer an interactive bit
 
 \begin{frame}
@@ -294,15 +321,10 @@
     \begin{minipage}{\textwidth}
       \begin{itemize}
       \item store the potentially large data?
-        \only<2->{{\color{b-green}\tickmark}}
       \item load the data into R?
-        \only<3->{{\color{b-green}\tickmark}}
       \item work offline / cache reads?
-        \only<3->{{\color{b-green}\tickmark}}
       \item deal with multiple versions?
-        \only<3->{{\color{b-green}\tickmark}}
       \item control access to the data?
-        \only<3->{{\color{b-green}\tickmark}}
       \end{itemize}
     \end{minipage}}
   \bottomright{\tt github.com/richfitz/datastorr}
@@ -337,6 +359,12 @@
 % might be very limited, or very broad, but without the tooling it's
 % going to be hard to tell.
 
+% Be clear that we're not looking for some sort of internet banking
+% solution where we have end-to-end security, where all secure
+% calculations happen in encrypted memory -- we're after something
+% simple where people's laptops might get stolen the data will not be
+% lost.
+
 \begin{frame}
   \minionhigh{Humane encryption}
   \bottomhanging{
@@ -349,7 +377,7 @@
 \end{frame}
 
 \begin{frame}
-  \minionhigh{Supported libraries}
+  \minionhigh{\color{b-blue}Supported libraries}
   \bottomhanging {
     \begin{minipage}{\textwidth}
       \begin{itemize}
@@ -386,21 +414,21 @@
 % with it.  Show this with little equations and with code/pseudocode.
 
 \begin{frame}
-  \minionhigh{Symmetric key encryption}
-  \bottomhanging{\only<1>{%
+  \minionveryhigh{\color{b-blue}Symmetric encryption}
+  \bottomhanginghigh{\only<1>{%
       \begin{minipage}{\textwidth}
         \begin{itemize}
         \item Same key to encrypt and decrypt
         \item Everyone has the same key
         \end{itemize}
       \end{minipage}}
-    \includegraphics<2>[width=.85\textwidth]{diagrams/encryption-sym-1}
-    \includegraphics<3>[width=.85\textwidth]{diagrams/encryption-sym-2}}
+    \includegraphics<2>[width=.95\textwidth]{diagrams/encryption-sym-1}
+    \includegraphics<3>[width=.95\textwidth]{diagrams/encryption-sym-2}}
 \end{frame}
 
 \begin{frame}
-  \minionhigh{Asymmetric (public key) encryption}
-  \bottomhanginglow{\only<1>{%
+  \minionveryhigh{\color{b-blue}Asymmetric (public key) encryption}
+  \bottomhanging{\only<1>{%
     \begin{minipage}{\textwidth}
       \begin{itemize}
       \item Keys come in a pair (public and private)
@@ -408,13 +436,13 @@
       \item Only you can decrypt it with your private key
       \end{itemize}
     \end{minipage}}
-  \includegraphics<2>[width=.85\textwidth]{diagrams/encryption-asym}}
+  \includegraphics<2>[width=.95\textwidth]{diagrams/encryption-asym}}
 \end{frame}
 
 % This is the first stage here
 \begin{frame}
-  \minionhigh{A workflow}
-  \bottomhanginglow{\only<1>{%
+  \minionhigh{\color{b-blue}A workflow}
+  \bottomhanging{\only<1>{%
       \begin{minipage}{\textwidth}
         \begin{enumerate}
         \item Generate SSH keys: \texttt{ssh-keygen}
@@ -434,7 +462,9 @@
   \bottomhanging{
     \includegraphics<1>[width=\textwidth]{snippets/encryptr-workflow-1}}
   \bottomhanginghigh{
-    \includegraphics<2>[width=.85\textwidth]{diagrams/encryption-workflow-1}}
+    \includegraphics<2>[width=.85\textwidth]{diagrams/encryption-workflow-setup-1}
+    \includegraphics<3>[width=.85\textwidth]{diagrams/encryption-workflow-setup-2}
+    \includegraphics<4>[width=.85\textwidth]{diagrams/encryption-workflow-1}}
   \bottomright{\includegraphics[height=.2\paperheight]{pics/alice}}
 \end{frame}
 
@@ -493,7 +523,15 @@
 
 % Need a summary here still
 
-% One more thing!
+\begin{frame}
+  \hero{\color{b-pink}Danger! Danger!}
+  % R is not secure
+  % Users are not secure
+\end{frame}
+
+\begin{frame}
+
+\end{frame}
 
 \begin{frame}
   \begin{tikzpicture}[remember picture, overlay]%
@@ -505,9 +543,17 @@
 \end{frame}
 
 \begin{frame}
-  \hero{\color{b-green}Odin}
-  \inthemiddle{\includegraphics[height=.55\textheight]{pics/odin}}
-  \bottomright{\ghrepo{richfitz/odin}}
+  \begin{tikzpicture}[remember picture, overlay]%
+    \node[anchor=west,align=left,font=\Huge\bfseries] (A) at ($(current page.west) + (0.04\paperwidth, .17\paperheight)$) {%
+      \color{b-green}Odin
+    };
+    \node[anchor=north east] at (current page.north east) {%
+      \includegraphics[height=.875\textheight]{pics/odin}
+    };
+    \node[anchor=south east, align=right,font=\footnotesize] at (current page.south east) {%
+      \ghrepo{richfitz/odin}
+    };
+  \end{tikzpicture}
 \end{frame}
 
 \begin{frame}
