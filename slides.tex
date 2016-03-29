@@ -13,13 +13,14 @@
 \usepackage{fontawesome}
 \newfontfamily{\FA}{FontAwesome}
 \def\twitter{{\FA \faTwitter}}
+\def\github{{\FA \faGithub}}
 \def\heart{{\FA \faHeart}}
 \def\tickmark{{\FA \faCheck}}
 \def\rarrow{{\FA \relsize{-1}{\faArrowRight}}}
 \def\imagetop#1{\vtop{\null\hbox{#1}}}
 \def\code{\texttt}
 \newcommand{\hrefp}[2]{\href{#1://#2}{#2}}
-\newcommand{\twitterhandle}[1]{\href{https://twitter.com/#1}{@#1}}
+\newcommand{\twitterhandle}[1]{\href{https://twitter.com/#1}{#1}}
 \newcommand{\ghrepo}[1]{\href{https://github.com/#1}{\tt github.com/#1}}
 \newcommand{\twitterhandlesm}[1]{\relsize{-1}{\color{b-grey}\href{https://twitter.com/#1}{@#1}}}
 
@@ -48,7 +49,9 @@
     \color{white}
     \node[anchor=south west] (B) at
     ($(current page.south west) + (0.05\paperwidth, 0.05\paperwidth)$) {
-      \color{b-grey}\twitterhandle{rgfitzjohn}
+      \color{b-grey}\twitter\ \twitterhandle{rgfitzjohn}%
+      \hspace{.07\textwidth}%
+      \color{b-grey}\github\ \href{https://github.com/richfitz}{richfitz}
     };
     \node[anchor=south west] at (B.north west) {
       Rich FitzJohn, Imperial College London
@@ -559,6 +562,26 @@
 \begin{frame}
   \inthemiddle{\includegraphics[height=.8\textheight]{snippets/odin-1}}
   \bottomright{\ghrepo{richfitz/odin}}
+\end{frame}
+
+\begin{frame}
+  \herohigh{\color{b-blue}Resources}
+  \bottomhanginglow {
+    \begin{minipage}{\textwidth}
+      \tiny
+      \begin{itemize}
+      \item \ghrepo{richfitz/datastorr}
+      \item \ghrepo{richfitz/storr}
+      \item \ghrepo{richfitz/encryptr}
+      \item \ghrepo{traitecoevo/taxonlookup}
+
+      \item \ghrepo{jeroenooms/curl}
+      \item \ghrepo{hadley/httr}
+      \item \ghrepo{edwindj/daff}
+      \item \ghrepo{jeroenooms/openssl}
+      \item \ghrepo{jeroenooms/sodium}
+      \end{itemize}
+    \end{minipage}}
 \end{frame}
 
 \end{document}
