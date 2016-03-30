@@ -365,11 +365,11 @@
 \begin{frame}
   \minionhigh{Humane encryption}
   \bottomhanging{
-    \includegraphics<1>[width=\textwidth]{snippets/encryptr-interface-1}%
-    \includegraphics<2>[width=\textwidth]{snippets/encryptr-interface-2}%
-    \includegraphics<3>[width=\textwidth]{snippets/encryptr-interface-3}%
-    \includegraphics<4>[width=\textwidth]{snippets/encryptr-interface-4}%
-    \includegraphics<5>[width=\textwidth]{snippets/encryptr-interface-other}%
+    \includegraphics<1>[width=\textwidth]{snippets/cyphr-interface-1}%
+    \includegraphics<2>[width=\textwidth]{snippets/cyphr-interface-2}%
+    \includegraphics<3>[width=\textwidth]{snippets/cyphr-interface-3}%
+    \includegraphics<4>[width=\textwidth]{snippets/cyphr-interface-4}%
+    \includegraphics<5>[width=\textwidth]{snippets/cyphr-interface-other}%
   }
 \end{frame}
 
@@ -399,7 +399,7 @@
     \begin{minipage}{\textwidth}
       \begin{itemize}
       \item encrypt something?
-        \only<2>{{\color{b-green}\tickmark}}
+        \only<2>{{\color{b-green}\tickmark}}\vphantom{\tickmark}
       \item share keys amongst users?
       \item \ldots so the key is not exposed?
       \item grant access to new people?
@@ -456,14 +456,14 @@
       \end{minipage}}
     \includegraphics<2>[width=.85\textwidth]{diagrams/encryption-asym}%
     \includegraphics<3>[width=.85\textwidth]{diagrams/encryption-workflow}}
-  \bottomright{\ghrepo{richfitz/encryptr}}
+  \bottomright{\ghrepo{richfitz/cyphr}}
 \end{frame}
 
 \begin{frame}
   \minionveryhigh{{\color{b-purple}Alice} \color{white} creates
     \color{b-pink} data key}
   \bottomhanging{
-    \includegraphics<1>[width=\textwidth]{snippets/encryptr-workflow-1}}
+    \includegraphics<1>[width=\textwidth]{snippets/cyphr-workflow-1}}
   \bottomhanginghigh{
     \includegraphics<2>[width=.85\textwidth]{diagrams/encryption-workflow-setup-1}
     \includegraphics<3>[width=.85\textwidth]{diagrams/encryption-workflow-setup-2}
@@ -477,7 +477,7 @@
 \begin{frame}
   \minionveryhigh{\color{white}{\color{b-grey}Bob} requests access}
   \bottomhanging{
-    \includegraphics<1>[width=\textwidth]{snippets/encryptr-workflow-2}}
+    \includegraphics<1>[width=\textwidth]{snippets/cyphr-workflow-2}}
   \bottomhanginghigh{
     \includegraphics<2>[width=.85\textwidth]{diagrams/encryption-workflow-2}}
   \bottomright{\includegraphics[height=.2\paperheight]{pics/bob}}
@@ -486,7 +486,7 @@
 \begin{frame}
   \minionveryhigh{{\color{b-purple}Alice} \color{white} authorises {\color{b-grey}Bob}}
   \bottomhanging{
-    \includegraphics<1>[width=\textwidth]{snippets/encryptr-workflow-3}}
+    \includegraphics<1>[width=\textwidth]{snippets/cyphr-workflow-3}}
   \bottomhanginghigh{
     \includegraphics<2>[width=.85\textwidth]{diagrams/encryption-workflow-3}}
   \bottomright{\includegraphics[height=.2\paperheight]{pics/alice}}
@@ -544,7 +544,7 @@
   \bottomright{
     \begin{minipage}{\textwidth}
       \raggedleft
-      \ghrepo{richfitz/datastorr}\\\ghrepo{richfitz/encryptr}
+      \ghrepo{richfitz/datastorr}\\\ghrepo{richfitz/cyphr}
     \end{minipage}
   }
 \end{frame}
@@ -592,7 +592,7 @@
       \begin{itemize}
       \item \ghrepo{richfitz/datastorr}
       \item \ghrepo{richfitz/storr}
-      \item \ghrepo{richfitz/encryptr}
+      \item \ghrepo{richfitz/cyphr}
       \item \ghrepo{traitecoevo/taxonlookup}
 
       \item \ghrepo{jeroenooms/curl}
