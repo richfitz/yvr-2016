@@ -97,27 +97,21 @@
 %
 %   Because git is so central to New Science it all gets a bit
 %   derailed when you hit any data of real size.
-% \begin{frame}
-%   \herohigh{\color{b-pink}Data versioning}
-%   \bottomhanginglow{%
-%     \raisebox{-.08\paperheight}{\includegraphics[height=.2\paperheight]{diagrams/dropbox}}%
-%     \hspace{.05\paperwidth}{\LARGE vs}\hspace{.05\paperwidth}%
-%     \raisebox{-.08\paperheight}{\includegraphics[height=.2\paperheight]{pics/logos/git}}}
-%   % TODO: Other logos needed here: dat, github, figshare
-% \end{frame}
-
-\begin{frame}
-  \begin{tikzpicture}[remember picture, overlay]%
-    \node (A) at (current page.center) {%
-      \includegraphics[width=.9\textwidth]{snippets/bigdata}
-    };
-    \node[anchor=north east] (B) at
-    ($(A.south east) + (0, .075\paperheight)$) {%
-      \only<1>{lol jk}%
-      \only<2>{\LARGE \ldots for git}%
-    };
-\end{tikzpicture}
-\end{frame}
+{
+  \setbeamercolor{background canvas}{bg=white}
+  \begin{frame}
+    \begin{tikzpicture}[remember picture, overlay]%
+      \node (A) at (current page.center) {%
+        \includegraphics[width=\textwidth]{snippets/bigdata}
+      };
+      \node[anchor=north east] (B) at
+      ($(A.south east) + (0, .075\paperheight)$) {%
+        \only<1>{\color{b-pink}lol jk}%
+        \only<2>{\color{b-blue}\LARGE \ldots for git}%
+      };
+    \end{tikzpicture}
+  \end{frame}
+}
 
 \begin{frame}
   \herohigh{\color{b-pink}Data versioning}
@@ -246,14 +240,6 @@
     \only<4>{\ghrepo{edwindj/daff}}}
 \end{frame}
 
-{
-  \setbeamercolor{background canvas}{bg=white}
-  \begin{frame}
-    \inthemiddle{%
-      \includegraphics[height=.9\textheight]{pics/can-of-worms}}
-  \end{frame}
-}
-
 \begin{frame}
   \minionhigh{\color{b-blue}Versioning: \color{b-green}semver.org}
   \bottomhanging{
@@ -266,6 +252,14 @@
       \end{itemize}
     \end{minipage}}
 \end{frame}
+
+{
+  \setbeamercolor{background canvas}{bg=white}
+  \begin{frame}
+    \inthemiddle{%
+      \includegraphics[height=.9\textheight]{pics/can-of-worms}}
+  \end{frame}
+}
 
 \begin{frame}
   \minionhigh{\color{b-blue}Access control}
@@ -319,7 +313,7 @@
 % Perhaps offer an interactive bit
 
 \begin{frame}
-  \minionhigh{\color{b-pink}How do we\ldots}
+  \minionhigh{\color{b-pink}Data versioning}
   \bottomhanging {
     \begin{minipage}{\textwidth}
       \begin{itemize}
@@ -429,6 +423,12 @@
     \includegraphics<3>[width=.95\textwidth]{diagrams/encryption-sym-2}}
 \end{frame}
 
+% The issue at this point is that it's not clear how we store the key.
+% We obviously can't store it with the data because then it's
+% basically all plain text.  We also have an issue distributing the
+% key because it should be kept secret.  This is a building block for
+% other methods.
+
 \begin{frame}
   \minionveryhigh{\color{b-blue}Asymmetric (public key) encryption}
   \bottomhanging{\only<1>{%
@@ -436,7 +436,7 @@
       \begin{itemize}
       \item Keys come in a pair (public and private)
       \item Anyone can encrypt a message with your public key
-      \item Only you can decrypt it with your private key
+      \item You can decrypt it with your private key
       \end{itemize}
     \end{minipage}}
   \includegraphics<2>[width=.95\textwidth]{diagrams/encryption-asym}}
@@ -533,8 +533,28 @@
 \end{frame}
 
 \begin{frame}
-
+  \herohigh{\color{b-blue}Summary}
+  \bottomhanginglow{
+    \begin{minipage}{\textwidth}
+      \begin{itemize}
+      \item Data distribution \& versioning
+      \item Sharing sensitive data
+      \end{itemize}
+    \end{minipage}}
+  \bottomright{
+    \begin{minipage}{\textwidth}
+      \raggedleft
+      \ghrepo{richfitz/datastorr}\\\ghrepo{richfitz/encryptr}
+    \end{minipage}
+  }
 \end{frame}
+
+{
+  \setbeamercolor{background canvas}{bg=white}
+\begin{frame}
+  \inthemiddle{\includegraphics[height=\paperheight]{pics/draw-an-owl}}
+\end{frame}
+}
 
 \begin{frame}
   \begin{tikzpicture}[remember picture, overlay]%
